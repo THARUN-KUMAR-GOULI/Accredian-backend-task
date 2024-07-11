@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+require('dotenv').config();
 
 const app = express();
 const port = 3001;
@@ -13,10 +14,10 @@ app.use(bodyparser.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'admin',
-    database:'accredianassignment'
+    host: process.env.DB_HOST,
+    user:process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_NAME
 });
 
 db.connect((err) => {
